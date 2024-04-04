@@ -44,6 +44,52 @@ button:hover{
   margin-bottom: 7%;
   width: 500px;
 }
+.workQuestionInput{
+  font-size: 25px;
+  font-weight: 500;
+  border-radius: 15px;
+  padding: 10px 20px;
+  border: none;
+  margin: 10px;
+  width: 400px;
+}
+.dateInput{
+  font-size: 25px;
+  font-weight: 500;
+  border-radius: 15px;
+  padding: 10px 20px;
+  border: none;
+  width: 150px;
+  margin: 5px;
+}
+textarea{
+  font-family: "Quicksand", sans-serif;
+  font-weight: 500;
+  font-size: 25px;
+  margin: 10px;
+  width: 100%;
+  height: 200px;
+  padding: 10px; /* Padding inside the textarea */
+  border: 1px solid #ccc; /* Border around the textarea */
+  border-radius: 15px; /* Rounded corners of the textarea */
+  resize: none; /* Disallow resizing of the textarea */
+}
+
+.header{
+  font-size: 40px;
+  text-align: center;
+  margin-top: 150px;
+  font-weight: 500;
+}
+
+
+
+
+
+
+
+
+
 
 
 

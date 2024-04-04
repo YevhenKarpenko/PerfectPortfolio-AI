@@ -8,6 +8,7 @@ import Email from "./Email";
 import Linkedin from "./Linkedin";
 import PortfolioURL from "./PortfolioURL";
 import Location from "./Location";
+import WorkExp from "./WorkExp";
 
 
 function UserData(){
@@ -25,20 +26,9 @@ function UserData(){
         portfolioURL: "",
         location: "",
     });
+    
+    const [experienceArray, updateExperienceArray] = useState([]); 
 
-    const [workExperience, updateWorkExperience] = useState(
-        [
-            {
-                JobTitle: "",
-                CompanyName: "",
-                Location: "",
-                StartEmployment: "",
-                EndEmployment:"",
-                
-
-            }
-        ]
-    )
 
     useEffect( () => {
          // Apply the enter animation every time currentStep changes
@@ -73,7 +63,10 @@ function UserData(){
         { Component: Email, props: {email: userInfo.email, setEmail: (value) => updateField("email", value), nextStop}},
         { Component: Linkedin, props: {linkedinURL: userInfo.email, setLinkedinURL: (value) => updateField("linkedinURL", value), nextStop}},
         { Component: PortfolioURL, props: {portfolioURL: userInfo.portfolioURL, setPortfolioURL: (value) => updateField("portfolioURL", value), nextStop}},
-        { Component: Location, props: {location: userInfo.location, setLocation: (value) => updateField("location", value), nextStop}}
+        { Component: Location, props: {location: userInfo.location, setLocation: (value) => updateField("location", value), nextStop}},
+       
+
+        //
         // Add more steps as you expand your form
     ];
 
@@ -82,7 +75,9 @@ function UserData(){
 
 return(
     <div className={`step-container ${animationClass}`}> 
-      <CurrentStopComponent {...currentProps} />
+     { // <CurrentStopComponent {...currentProps} />} 
+}
+        <WorkExp />
         
     </div>
 )
