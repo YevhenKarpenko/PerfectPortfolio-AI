@@ -26,8 +26,8 @@ function UserData(){
         portfolioURL: "",
         location: "",
     });
-    
-    const [experienceArray, updateExperienceArray] = useState([]); 
+
+    const [experienceArray, setExperienceArray] = useState([]); 
 
 
     useEffect( () => {
@@ -56,6 +56,11 @@ function UserData(){
         },250);    
     }
 
+    const addExperience = (experience) => {
+        setExperienceArray( (prevData) => [...prevData, experience]);
+        console.log(experienceArray);
+    }
+
     const stops = [
         { Component: Name, props: { name: userInfo.name, setName: (value) => updateField('name', value), nextStop } },
         { Component: Position, props: { position: userInfo.position, setPosition: (value) => updateField('position', value), nextStop } },
@@ -64,6 +69,7 @@ function UserData(){
         { Component: Linkedin, props: {linkedinURL: userInfo.email, setLinkedinURL: (value) => updateField("linkedinURL", value), nextStop}},
         { Component: PortfolioURL, props: {portfolioURL: userInfo.portfolioURL, setPortfolioURL: (value) => updateField("portfolioURL", value), nextStop}},
         { Component: Location, props: {location: userInfo.location, setLocation: (value) => updateField("location", value), nextStop}},
+        { Component: WorkExp, props: {addExperience: addExperience, nextStop}},
        
 
         //
@@ -75,9 +81,9 @@ function UserData(){
 
 return(
     <div className={`step-container ${animationClass}`}> 
-     { // <CurrentStopComponent {...currentProps} />} 
-}
-        <WorkExp />
+      <CurrentStopComponent {...currentProps} />
+
+  
         
     </div>
 )

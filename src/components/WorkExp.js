@@ -2,7 +2,7 @@ import { useState } from "react";
 import Button from "./Button"
 
 
-function WorkExp(){
+function WorkExp({addExperience, nextStop}){
 
     const [currentExperience, updateCurrentExperience] = useState(
         {
@@ -15,7 +15,6 @@ function WorkExp(){
         }
     )
 
-    const [allExperiences, setAllExperiences] = useState([]); 
 
     const handleChange = (e) => {
         const {name, value} = e.target;
@@ -27,7 +26,7 @@ function WorkExp(){
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        setAllExperiences( (prevData) => [...prevData, currentExperience]);
+        addExperience(currentExperience);
         updateCurrentExperience({
             jobTitle: "",
             companyName: "",
@@ -36,7 +35,6 @@ function WorkExp(){
             endDate:"",
             responsibilities: "",
         })
-        console.log(allExperiences);
     }
 
     return(
@@ -108,7 +106,7 @@ function WorkExp(){
         </label>
         <br />
       <button type="Submit">Add</button>
-      <Button text="Continue"/>
+      <Button onClick={nextStop} text="Continue"/>
             </form>
         
         </>
