@@ -8,7 +8,7 @@ function Position({position, setPosition, nextStop}){
 
     return(
         <div className="enter-form">
-         <p className="questionText">What is your Job Title?</p>
+         <p className="questionText">Enter your Job Title</p>
          <input value={position} onChange={handleChange} placeholder="AI Developer" className="questionInput" type="text" />
           <div>
           <Button onClick={nextStop} text="Continue" />

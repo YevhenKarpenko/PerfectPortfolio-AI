@@ -8,7 +8,7 @@ function Name({name, setName, nextStop}){
 
     return(
         <div className="enter-form">
-         <p className="questionText">What is your full name?</p>
+         <p className="questionText">Enter your full name</p>
          <input value={name} onChange={handleChange} placeholder="Steve Jobs" className="questionInput" type="text" />
           <div>
           <Button onClick={nextStop} text="Continue" />

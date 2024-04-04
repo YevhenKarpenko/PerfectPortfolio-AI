@@ -42,12 +42,10 @@ button:hover{
   border: none;
   margin-top: 7%;
   margin-bottom: 7%;
+  width: 500px;
 }
 
-.step-container {
-  /* Base styles for the container */
 
-}
 
 .fade-enter, .fade-exit-active {
   opacity: 0;
