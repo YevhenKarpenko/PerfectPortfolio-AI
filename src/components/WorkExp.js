@@ -15,6 +15,7 @@ function WorkExp({addExperience, nextStop}){
         }
     )
 
+    const [allExperiences, updateAllExperiences] = useState([]);
 
     const handleChange = (e) => {
         const {name, value} = e.target;
@@ -26,6 +27,7 @@ function WorkExp({addExperience, nextStop}){
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        updateAllExperiences( (prevValue) => [...prevValue,currentExperience]);
         addExperience(currentExperience);
         updateCurrentExperience({
             jobTitle: "",
@@ -38,7 +40,7 @@ function WorkExp({addExperience, nextStop}){
     }
 
     return(
-        <>
+        <div className="container">
         <p className="header">Add your Work Experience</p>
         <form className="enter-form" onSubmit={handleSubmit}>
         <label className="questionText"> 
@@ -101,15 +103,17 @@ function WorkExp({addExperience, nextStop}){
          name="responsibilities"
               value={currentExperience.responsibilities}
             onChange={handleChange}
-            placeholder="Please describe your work responsibilities and achievements. Write freely; our AI will refine your input into a polished summary"
+            placeholder="Please describe your work responsibilities and achievements. Write freely; ChatGPT will refine your input into a polished summary"
          />
         </label>
         <br />
+        
+     
       <button type="Submit">Add</button>
       <Button onClick={nextStop} text="Continue"/>
             </form>
         
-        </>
+        </div>
     )
 }
 

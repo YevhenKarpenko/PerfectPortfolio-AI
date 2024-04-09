@@ -1,9 +1,9 @@
 import Button from "./Button"
 
 
-function Linkedin({linkedinURL, setlinkedinURL, nextStop}){
+function Linkedin({linkedinURL, setLinkedinURL, nextStop}){
     const handleChange = (event) => {
-        setlinkedinURL(event.target.value);    
+        setLinkedinURL(event.target.value);    
     }
 
     return(

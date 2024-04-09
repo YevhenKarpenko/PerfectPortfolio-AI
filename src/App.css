@@ -78,12 +78,21 @@ textarea{
 .header{
   font-size: 40px;
   text-align: center;
-  margin-top: 150px;
   font-weight: 500;
 }
+.added-position{
+ 
+  background-color: white;
+  padding: 20px;
+  border-radius: 15px;
+}
 
-
-
+.main-content{
+height: 100%;
+display: flex;
+align-items: center;
+justify-content: center;
+}
 
 
 

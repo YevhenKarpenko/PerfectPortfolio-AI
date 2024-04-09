@@ -1,6 +1,8 @@
 
 import { useEffect, useState } from "react";
 
+
+
 import Name from "./Name";
 import Position from "./Position";
 import PhoneNumber from "./PhoneNumber";
@@ -9,6 +11,11 @@ import Linkedin from "./Linkedin";
 import PortfolioURL from "./PortfolioURL";
 import Location from "./Location";
 import WorkExp from "./WorkExp";
+import Education from "./Education";
+import Description from "./Description";
+
+import useGenerateCV from "./useGenerateCV";
+
 
 
 function UserData(){
@@ -25,10 +32,18 @@ function UserData(){
         linkedinURL: "",
         portfolioURL: "",
         location: "",
+        description: ""
     });
 
     const [experienceArray, setExperienceArray] = useState([]); 
+    const [educationArray, setEducationArray] = useState([]);
 
+
+    const { generateCVContent, loading, error, cvText } = useGenerateCV();
+     // Add the generateCV function
+     const generateCV = () => {
+        generateCVContent(userInfo, experienceArray, educationArray);
+    };
 
     useEffect( () => {
          // Apply the enter animation every time currentStep changes
@@ -60,16 +75,35 @@ function UserData(){
         setExperienceArray( (prevData) => [...prevData, experience]);
         console.log(experienceArray);
     }
+    const addEducation = (education) => {
+        setEducationArray( (prevData) => [...prevData, education]);
+        console.log(educationArray);
+    }
 
     const stops = [
         { Component: Name, props: { name: userInfo.name, setName: (value) => updateField('name', value), nextStop } },
         { Component: Position, props: { position: userInfo.position, setPosition: (value) => updateField('position', value), nextStop } },
         { Component: PhoneNumber, props: {phoneNumber: userInfo.phoneNumber, setPhoneNumber: (value) => updateField("phoneNumber", value), nextStop}},
         { Component: Email, props: {email: userInfo.email, setEmail: (value) => updateField("email", value), nextStop}},
-        { Component: Linkedin, props: {linkedinURL: userInfo.email, setLinkedinURL: (value) => updateField("linkedinURL", value), nextStop}},
+        { Component: Linkedin, props: {linkedinURL: userInfo.linkedinURL, setLinkedinURL: (value) => updateField("linkedinURL", value), nextStop}},
         { Component: PortfolioURL, props: {portfolioURL: userInfo.portfolioURL, setPortfolioURL: (value) => updateField("portfolioURL", value), nextStop}},
         { Component: Location, props: {location: userInfo.location, setLocation: (value) => updateField("location", value), nextStop}},
+        { Component: Description, props: {description: userInfo.description, setDescription: (value) => updateField("description", value), nextStop}},
         { Component: WorkExp, props: {addExperience: addExperience, nextStop}},
+        { Component: Education, props: {addEducation: addEducation, nextStop}},
+        {
+            Component: () => (
+                <div>
+                    <button onClick={generateCV} disabled={loading}>
+                        Generate CV
+                    </button>
+                    {loading && <p>Generating CV...</p>}
+                    {error && <p>Error generating CV: {error.message}</p>}
+                    {cvText && <div><h3>Generated CV:</h3><p>{cvText}</p></div>}
+                </div>
+            ),
+            props: {}
+        },
        
 
         //
@@ -80,12 +114,14 @@ function UserData(){
     const currentProps = stops[currentStop].props;
 
 return(
-    <div className={`step-container ${animationClass}`}> 
-      <CurrentStopComponent {...currentProps} />
-
-  
-        
+    <div className="main-content">
+    <div className={`step-container ${animationClass}`}>
+        <CurrentStopComponent {...currentProps} />
     </div>
+    {currentStop === stops.length - 1 ? null : (
+        <button onClick={nextStop}>Next</button>
+    )}
+</div>
 )
 }
 
